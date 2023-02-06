@@ -13,7 +13,7 @@ public class OneToManyRelationService {
     @Autowired
     OneToManyRelationRepository oneToManyRelationRepository;
 
-    public List<OneToManyRelation> getAllManyRelations() {
+    public List<OneToManyRelation> getAllOneToManyRelations() {
         return (List<OneToManyRelation>) oneToManyRelationRepository.findAll();
     }
 }

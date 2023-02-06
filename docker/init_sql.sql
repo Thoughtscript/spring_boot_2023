@@ -7,18 +7,53 @@ CREATE ROLE testuser LOGIN SUPERUSER PASSWORD 'testpassword';
 DROP TABLE IF EXISTS example;
 
 CREATE TABLE example (
-  id INT,
+  id INT NOT NULL,
   name VARCHAR(30),
-  relationfk INT
+  oneonerelationfk INT,
+  onemanyrelationfk INT,
+  manyonerelationfk INT,
+  PRIMARY KEY (id)
 );
 
-CREATE TABLE onerelation (
-  id INT,
-  name VARCHAR(30)
+DROP TABLE IF EXISTS oneonerelation;
+
+CREATE TABLE oneonerelation (
+  id INT NOT NULL,
+  name VARCHAR(30),
+  examplefk INT,
+  PRIMARY KEY (id)
 );
 
-CREATE TABLE manyrelation (
-  id INT,
+DROP TABLE IF EXISTS onemanyrelation;
+
+CREATE TABLE onemanyrelation (
+  id INT NOT NULL,
   name VARCHAR(30),
-  examplefk INT
+  examplefk INT,
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS manyonerelation;
+
+CREATE TABLE manyonerelation (
+  id INT NOT NULL,
+  name VARCHAR(30),
+  examplefk INT,
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS manymanyrelation;
+
+CREATE TABLE manymanyrelation (
+  id INT NOT NULL,
+  name VARCHAR(30),
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS E_M;
+
+CREATE TABLE E_M (
+  id INT,
+  eId INT,
+  mmId INT
 );

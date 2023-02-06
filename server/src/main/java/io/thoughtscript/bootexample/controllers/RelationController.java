@@ -1,7 +1,11 @@
 package io.thoughtscript.bootexample.controllers;
 
+import io.thoughtscript.bootexample.domain.ManyToManyRelation;
+import io.thoughtscript.bootexample.domain.ManyToOneRelation;
 import io.thoughtscript.bootexample.domain.OneToManyRelation;
 import io.thoughtscript.bootexample.domain.OneToOneRelation;
+import io.thoughtscript.bootexample.services.ManyToManyRelationService;
+import io.thoughtscript.bootexample.services.ManyToOneRelationService;
 import io.thoughtscript.bootexample.services.OneToManyRelationService;
 import io.thoughtscript.bootexample.services.OneToOneRelationService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,22 +24,42 @@ import java.util.List;
 public class RelationController {
 
     @Autowired
+    OneToOneRelationService oneToOneRelationService;
+
+    @Autowired
     OneToManyRelationService oneToManyRelationService;
 
     @Autowired
-    OneToOneRelationService oneToOneRelationService;
+    ManyToOneRelationService manyToOneRelationService;
 
-    @GetMapping("/one/all")
+    @Autowired
+    ManyToManyRelationService manyToManyRelationService;
+
+    @GetMapping("/one/one/all")
     @ResponseBody
-    public ResponseEntity getAllOneRelations() {
-        List<OneToOneRelation> result = oneToOneRelationService.getAllOneRelations();
+    public ResponseEntity getAllOneToOneRelations() {
+        List<OneToOneRelation> result = oneToOneRelationService.getAllOneToOneRelations();
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/many/all")
+    @GetMapping("/one/many/all")
     @ResponseBody
-    public ResponseEntity getAllManyRelations() {
-        List<OneToManyRelation> result = oneToManyRelationService.getAllManyRelations();
+    public ResponseEntity getAllOneToManyRelations() {
+        List<OneToManyRelation> result = oneToManyRelationService.getAllOneToManyRelations();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/many/one/all")
+    @ResponseBody
+    public ResponseEntity getAllManyToOneRelations() {
+        List<ManyToOneRelation> result = manyToOneRelationService.getAllManyToOneRelations();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/many/many/all")
+    @ResponseBody
+    public ResponseEntity getAllManyToManyRelations() {
+        List<ManyToManyRelation> result = manyToManyRelationService.getAllManyToManyRelations();
         return ResponseEntity.ok(result);
     }
 }

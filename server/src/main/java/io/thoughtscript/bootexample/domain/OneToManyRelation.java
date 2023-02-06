@@ -9,7 +9,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "manyrelation")
+@Table(name = "onemanyrelation")
 @AllArgsConstructor
 @NoArgsConstructor
 public class OneToManyRelation {
@@ -17,12 +17,16 @@ public class OneToManyRelation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    private long id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
 
-
     @Column(name = "examplefk")
-    private long examplefk;
+    private Long examplefk;
+
+    public OneToManyRelation(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
