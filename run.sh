@@ -20,6 +20,6 @@ cd ./docker && docker build . && docker images --all &
 # docker stop <aa9f01c38d04>
 # docker system prune --volumes
 
-sleep 10 && cd ./_spring && mvn clean && mvn spring-boot:run &
+sleep 10 && cd server && mvn clean && mvn spring-boot:run &
 
 wait
